@@ -13,8 +13,14 @@ App.PostsRoute = Ember.Route.extend({
   }
 });
 
+App.PostRoute = Ember.Route.extend({
+  model: function(params) {
+    return posts.findBy('id', params.post_id);
+  }
+});
+
 var posts = [{
-  id: 1,
+  id: '1',
   title: 'Post 1',
   author: {
     name: 'Author 1'
@@ -23,7 +29,7 @@ var posts = [{
   excerpt: 'Lorem Ipsum',
   body: 'Lorem Ipsum dolor sit amet'
 }, {
-  id: 2,
+  id: '2',
   title: 'Post 2',
   author: {
     name: 'Author 2'
