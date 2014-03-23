@@ -32,3 +32,9 @@ App.PostRoute = Ember.Route.extend({
 Ember.Handlebars.helper('format-date', function(date) {
   return moment(date).fromNow();
 });
+
+var showdown = new Showdown.converter();
+
+Ember.Handlebars.helper('format-markdown', function(input) {
+  return new Handlebars.SafeString(showdown.makeHtml(input));
+});
