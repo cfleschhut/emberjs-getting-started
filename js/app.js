@@ -29,6 +29,8 @@ App.PostRoute = Ember.Route.extend({
   }
 });
 
+// App.IndexController = Ember.Controller.extend();
+
 Ember.Handlebars.helper('format-date', function(date) {
   return moment(date).fromNow();
 });

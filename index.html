@@ -10,10 +10,10 @@
 <body>
 
   <script type="text/x-handlebars">
-    <div class="navbar navbar-default navbar-static-top">
+    <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Bloggr</a>
+          {{#link-to 'index' class='navbar-brand'}}Bloggr{{/link-to}}
         </div>
         <ul class="nav navbar-nav">
           {{#link-to 'posts' tagName='li'}}
@@ -26,37 +26,67 @@
       </div>
     </div>
 
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-12'>
-          <div class='page-header'>
-            <h1>Welcome to Ember.js</h1>
+    {{outlet}}
+
+    <footer>
+      <div class='container'>
+        <div class='row'>
+          <div class='col-md-12'>
+            <hr>
+            <p>
+              <a href='https://github.com/cfleschhut/emberjs-getting-started'>Ember.js Getting Started</a>
+            </p>
           </div>
         </div>
       </div>
-      <div class='row'>
+    </footer>
+  </script>
 
-        {{outlet}}
-
+  <script type="text/x-handlebars" id='index'>
+    <div class='jumbotron'>
+      <div class='container'>
+        <h1>Welcome to Ember.js</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat.
+        </p>
+        <p>
+          {{#link-to 'posts' class='btn btn-primary btn-lg'}}
+            Posts Archive
+          {{/link-to}}
+        </p>
       </div>
     </div>
   </script>
 
   <script type="text/x-handlebars" id='posts'>
-    <div class='col-md-3'>
-      <h3>Recent Posts</h3>
-      <ul class='nav nav-pills nav-stacked'>
-        {{#each}}
-          {{#link-to 'post' this tagName='li'}}
-            <a>{{{title}}} <small>by {{author.name}}</small></a>
-          {{/link-to}}
-        {{/each}}
-      </ul>
-    </div>
-    <div class='col-md-9'>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <div class='page-header'>
+            <h1>Posts</h1>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-3'>
+          <h3>Recent Posts</h3>
+          <ul class='nav nav-pills nav-stacked'>
+            {{#each}}
+              {{#link-to 'post' this tagName='li'}}
+                <a>{{{title}}} <small>by {{author.name}}</small></a>
+              {{/link-to}}
+            {{/each}}
+          </ul>
+        </div>
+        <div class='col-md-9'>
 
-      {{outlet}}
+          {{outlet}}
 
+        </div>
+      </div>
     </div>
   </script>
 
@@ -74,8 +104,22 @@
   </script>
 
   <script type="text/x-handlebars" id='about'>
-    <div class='col-md-12'>
-      <h2>About</h2>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <div class='page-header'>
+            <h1>About</h1>
+          </div>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </div>
     </div>
   </script>
 
