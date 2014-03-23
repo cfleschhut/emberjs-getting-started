@@ -19,13 +19,17 @@ App.PostRoute = Ember.Route.extend({
   }
 });
 
+Ember.Handlebars.helper('format-date', function(date) {
+  return moment(date).fromNow();
+});
+
 var posts = [{
   id: '1',
   title: 'Post 1',
   author: {
     name: 'Author 1'
   },
-  date: new Date('12-27-2012'),
+  date: new Date('12-27-2013'),
   excerpt: 'Lorem Ipsum',
   body: 'Lorem Ipsum dolor sit amet'
 }, {
@@ -34,7 +38,7 @@ var posts = [{
   author: {
     name: 'Author 2'
   },
-  date: new Date('12-24-2012'),
+  date: new Date('12-24-2013'),
   excerpt: 'Lorem Ipsum',
   body: 'Lorem Ipsum dolor sit amet'
 }];
