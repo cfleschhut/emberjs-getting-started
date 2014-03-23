@@ -1,4 +1,6 @@
-App = Ember.Application.create();
+App = Ember.Application.create({
+  LOG_TRANSITIONS: true
+});
 
 App.Router.map(function() {
   this.resource('about');
@@ -9,36 +11,24 @@ App.Router.map(function() {
 
 App.PostsRoute = Ember.Route.extend({
   model: function() {
-    return posts;
+    return $.getJSON('http://tomdale.net/api/get_recent_posts/?callback=?').then(function(data) {
+      return data.posts.map(function(post) {
+        post.body = post.content;
+        return post;
+      });
+    });
   }
 });
 
 App.PostRoute = Ember.Route.extend({
   model: function(params) {
-    return posts.findBy('id', params.post_id);
+    return $.getJSON('http://tomdale.net/api/get_post/?id=' + params.post_id + '&callback=?').then(function(data) {
+      data.post.body = data.post.content;
+      return data.post
+    });
   }
 });
 
 Ember.Handlebars.helper('format-date', function(date) {
   return moment(date).fromNow();
 });
-
-var posts = [{
-  id: '1',
-  title: 'Post 1',
-  author: {
-    name: 'Author 1'
-  },
-  date: new Date('12-27-2013'),
-  excerpt: 'Lorem Ipsum',
-  body: 'Lorem Ipsum dolor sit amet'
-}, {
-  id: '2',
-  title: 'Post 2',
-  author: {
-    name: 'Author 2'
-  },
-  date: new Date('12-24-2013'),
-  excerpt: 'Lorem Ipsum',
-  body: 'Lorem Ipsum dolor sit amet'
-}];
