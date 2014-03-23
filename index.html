@@ -16,12 +16,12 @@
           <a class="navbar-brand" href="#">Bloggr</a>
         </div>
         <ul class="nav navbar-nav">
-          <li>
-            {{#link-to 'posts'}}Posts{{/link-to}}
-          </li>
-          <li>
-            {{#link-to 'about'}}About{{/link-to}}
-          </li>
+          {{#link-to 'posts' tagName='li'}}
+            <a>Posts</a>
+          {{/link-to}}
+          {{#link-to 'about' tagName='li'}}
+            <a>About</a>
+          {{/link-to}}
         </ul>
       </div>
     </div>
@@ -47,11 +47,9 @@
       <h3>Recent Posts</h3>
       <ul class='nav nav-pills nav-stacked'>
         {{#each}}
-          <li>
-            {{#link-to 'post' this}}
-              {{{title}}} <small>by {{author.name}}</small>
-            {{/link-to}}
-          </li>
+          {{#link-to 'post' this tagName='li'}}
+            <a>{{{title}}} <small>by {{author.name}}</small></a>
+          {{/link-to}}
         {{/each}}
       </ul>
     </div>
