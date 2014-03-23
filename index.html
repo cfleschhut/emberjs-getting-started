@@ -10,7 +10,7 @@
 <body>
 
   <script type="text/x-handlebars">
-    <div class="navbar navbar-default">
+    <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">Bloggr</a>
@@ -26,30 +26,39 @@
       </div>
     </div>
 
-    {{outlet}}
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-12'>
+          <div class='page-header'>
+            <h1>Welcome to Ember.js</h1>
+          </div>
+        </div>
+      </div>
+      <div class='row'>
+
+        {{outlet}}
+
+      </div>
+    </div>
   </script>
 
   <script type="text/x-handlebars" id='posts'>
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-3'>
-          <h3>Recent Posts</h3>
-          <ul>
-            {{#each}}
-              <li>
-                {{#link-to 'post' this}}
-                  {{title}} <small>by {{author.name}}</small>
-                {{/link-to}}
-              </li>
-            {{/each}}
-          </ul>
-        </div>
-        <div class='col-md-9'>
+    <div class='col-md-3'>
+      <h3>Recent Posts</h3>
+      <ul class='nav nav-pills nav-stacked'>
+        {{#each}}
+          <li>
+            {{#link-to 'post' this}}
+              {{title}} <small>by {{author.name}}</small>
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class='col-md-9'>
 
-          {{outlet}}
+      {{outlet}}
 
-        </div>
-      </div>
     </div>
   </script>
 
@@ -67,8 +76,8 @@
   </script>
 
   <script type="text/x-handlebars" id='about'>
-    <div class='about'>
-      <h1>About</h1>
+    <div class='col-md-12'>
+      <h2>About</h2>
     </div>
   </script>
 
