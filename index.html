@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Ember Starter Kit</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset='utf-8'>
+  <title>Ember.js Guides: Building an Ember.js Application</title>
+  <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css'>
+  <link rel='stylesheet' href='css/style.css'>
 </head>
 
 <body>
 
-  <script type="text/x-handlebars">
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
+  <script type='text/x-handlebars'>
+    <div class='navbar navbar-default navbar-fixed-top'>
+      <div class='container'>
+        <div class='navbar-header'>
           {{#link-to 'index' class='navbar-brand'}}Bloggr{{/link-to}}
         </div>
-        <ul class="nav navbar-nav">
+        <ul class='nav navbar-nav'>
           {{#link-to 'posts' tagName='li'}}
             <a>Posts</a>
           {{/link-to}}
@@ -34,7 +34,11 @@
           <div class='col-md-12'>
             <hr>
             <p>
-              <a href='https://github.com/cfleschhut/emberjs-getting-started'>Ember.js Getting Started</a>
+              <a href='https://github.com/cfleschhut/emberjs-getting-started'>GitHub Repo</a>
+              //
+              <a href='http://emberjs.com/guides/'>Ember.js Guides</a>
+              //
+              <a href='http://handlebarsjs.com/'>Handlebars Docs</a>
             </p>
           </div>
         </div>
@@ -42,7 +46,7 @@
     </footer>
   </script>
 
-  <script type="text/x-handlebars" id='index'>
+  <script type='text/x-handlebars' id='index'>
     <div class='jumbotron'>
       <div class='container'>
         <h1>Welcome to Ember.js</h1>
@@ -54,14 +58,14 @@
         </p>
         <p>
           {{#link-to 'posts' class='btn btn-primary btn-lg'}}
-            Posts Archive
+            See all Posts »
           {{/link-to}}
         </p>
       </div>
     </div>
   </script>
 
-  <script type="text/x-handlebars" id='posts'>
+  <script type='text/x-handlebars' id='posts'>
     <div class='container'>
       <div class='row'>
         <div class='col-md-12'>
@@ -76,7 +80,7 @@
           <ul class='nav nav-pills nav-stacked'>
             {{#each}}
               {{#link-to 'post' this tagName='li'}}
-                <a>{{{title}}} <small>by {{author.name}}</small></a>
+                <a>{{{format-markdown title}}} <small>by {{author.name}}</small></a>
               {{/link-to}}
             {{/each}}
           </ul>
@@ -90,10 +94,20 @@
     </div>
   </script>
 
-  <script type="text/x-handlebars" id='post'>
+  <script type='text/x-handlebars' id='post'>
+
+    <div>
+      {{#if isEditing}}
+        {{partial 'post/edit'}}
+        <button class='btn btn-default' {{action 'doneEditing'}}>Done</button>
+      {{else}}
+        <button class='btn btn-default' {{action 'edit'}}>Edit</button>
+      {{/if}}
+    </div>
+
     <div class='page-header'>
       <h1>
-        {{{title}}}
+        {{{format-markdown title}}}
         <small>{{author.name}} – {{format-date date}}</small>
       </h1>
     </div>
@@ -103,7 +117,24 @@
     <div class='content'>{{format-markdown body}}</div>
   </script>
 
-  <script type="text/x-handlebars" id='about'>
+  <script type='text/x-handlebars' id='post/_edit'>
+    <form>
+      <fieldset>
+        <legend>Edit Post</legend>
+        <div class='form-group'>
+          {{input value=title class='form-control'}}
+        </div>
+        <div class='form-group'>
+          {{textarea value=excerpt class='form-control' rows='4'}}
+        </div>
+        <div class='form-group'>
+          {{textarea value=body class='form-control' rows='6'}}
+        </div>
+      </fieldset>
+    </form>
+  </script>
+
+  <script type='text/x-handlebars' id='about'>
     <div class='container'>
       <div class='row'>
         <div class='col-md-12'>
@@ -123,13 +154,13 @@
     </div>
   </script>
 
-  <script src="js/libs/jquery-1.10.2.js"></script>
-  <script src="js/libs/handlebars-1.1.2.js"></script>
-  <script src="js/libs/ember-1.4.0.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/showdown/src/showdown.js"></script>
-  <script src="js/app.js"></script>
-  <!-- to activate the test runner, add the "?test" query string parameter -->
-  <script src="tests/runner.js"></script>
+  <script src='js/libs/jquery-1.10.2.js'></script>
+  <script src='js/libs/handlebars-1.1.2.js'></script>
+  <script src='js/libs/ember-1.4.0.js'></script>
+  <script src='bower_components/moment/moment.js'></script>
+  <script src='bower_components/showdown/src/showdown.js'></script>
+  <script src='js/app.js'></script>
+  <!-- to activate the test runner, add the '?test' query string parameter -->
+  <script src='tests/runner.js'></script>
 </body>
 </html>
